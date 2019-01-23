@@ -22,7 +22,7 @@ irongenerate passport-lm
 cd passport-lm
 ```
 
-Y antes de comenzar instalamos passport y sus dependencias:
+Y antes de comenzar con el código instalamos passport y sus dependencias:
 
 ```bash
   npm i passport passport-local passport-local-mongoose
@@ -36,7 +36,7 @@ npm i connect-mongo express-session connect-ensure-login
 
 ## Creando nuestro modelo
 
-Crea un archivo `User.js` dentro de la carpeta models con el siguiente contenido:
+Crea un archivo `/User.js` dentro de la carpeta `/models` con el siguiente contenido:
 
 ```js
 const mongoose = require('mongoose');
@@ -56,7 +56,7 @@ const userSchema = new Schema({
   }
 });
 
-// -> Tenemos un modelo común hasta ahora, donde aplicamos el plugin al schema, y le asignamos un campo que usará como username.
+// -> Tenemos un modelo común hasta ahora. Aplicamos el plugin al schema, y le asignamos un campo que usará como username.
 userSchema.plugin(passportLocalMongoose, {usernameField: "username"});
 
 const User = mongoose.model("User", userSchema);
@@ -75,11 +75,12 @@ const localStrategy = require('passport-local').Strategy
 const User = require('../models/User')
 
 passport.use(new localStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 ```
 
-con el cual configuramos passport con la estrategia local y los métodos `serializeUser` y `deserializeUser` que son más sencillos a los que habíamos utilizado.
+Con el cual configuramos passport con la estrategia local y los métodos `serializeUser` y `deserializeUser`.
 
 En nuestro archivo archivo `app.js` agregamos la configuración que acabamos de generar y colocamos los métodos de inicio y sesión de passport, así como la configuración de sesión:
 
