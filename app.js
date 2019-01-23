@@ -7,7 +7,7 @@ const favicon      = require('serve-favicon');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const passport = require('passport')
+const passport = require('./services/passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
@@ -59,7 +59,7 @@ app.use(require('express-session')({
 app.use(passport.initialize())
 app.use(passport.session())
 
-require('./services/passport')
+//require('./services/passport')
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';

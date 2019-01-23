@@ -75,9 +75,10 @@ const localStrategy = require('passport-local').Strategy
 const User = require('../models/User')
 
 passport.use(new localStrategy(User.authenticate()));
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+module.exports = passport
 ```
 
 Con el cual configuramos passport con la estrategia local y los métodos `serializeUser` y `deserializeUser`.
@@ -90,7 +91,6 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-require('./services/passport')
 
 app.use(require('express-session')({
   secret: 'plugin',
