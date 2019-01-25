@@ -89,3 +89,6 @@ typings/
 
 .vscode
 yarn.lock
+package-lock.json
+.vscode
+.env

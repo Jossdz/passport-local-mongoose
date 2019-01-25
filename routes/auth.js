@@ -1,4 +1,3 @@
-const ensureLogin = require('connect-ensure-login');
 const passport = require('passport');
 const {Router} = require('express');
 const router = Router();
@@ -40,6 +39,5 @@ router
     req.logout();
     res.redirect('/login');
   })
-
 
 module.exports = router;

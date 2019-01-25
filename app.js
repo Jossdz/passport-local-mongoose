@@ -12,7 +12,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/passport-local-mongoose', {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -59,7 +59,6 @@ app.use(require('express-session')({
 app.use(passport.initialize())
 app.use(passport.session())
 
-//require('./services/passport')
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
